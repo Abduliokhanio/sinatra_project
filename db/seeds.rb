@@ -1,0 +1,5 @@
+Ticket.create(title: "first title", details: "first detail")
+Ticket.create(title: "2nd title", details: "2nd detail")
+Ticket.create(title: "3rd title", details: "3rd detail")
+Ticket.create(title: "4rd title", details: "4rd detail")
+Ticket.create(title: "5rd title", details: "5rd detail")
