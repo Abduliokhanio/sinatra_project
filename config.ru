@@ -7,5 +7,5 @@ end
 # allows us to use PATCH and DELETE routes
 use Rack::MethodOverride
 
-use OtherController
+use LoginController
 run ApplicationController
