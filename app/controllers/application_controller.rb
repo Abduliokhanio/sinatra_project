@@ -13,4 +13,14 @@ class ApplicationController < Sinatra::Base
     erb :'welcome'
   end
 
+  helpers do 
+    def logged_in?
+      !!session[:User_id]
+    end 
+
+    def current_user
+      @user ||= Employee.find_by_id(session[:User_id]) if logged_in?
+    end 
+  end 
+
 end

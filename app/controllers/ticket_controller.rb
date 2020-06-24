@@ -1,41 +1,78 @@
 class TicketController < ApplicationController
 
     get "/tickets" do #Read
-        @tickets = Ticket.all
-        erb :'tickets/all_tickets'
+        if logged_in?
+            @tickets = current_user.tickets
+            erb :'tickets/all_tickets'
+        else
+            redirect '/login'
+        end 
     end 
     
     get "/tickets/new" do #Create
-        erb :'tickets/create_ticket'
+        if logged_in?
+            erb :'tickets/create_ticket'
+        else
+            redirect '/login'
+        end
     end
     
     post "/tickets" do #Create
-        Ticket.create(title: params[:title], details: params[:details])
-        redirect "/tickets"
+        if logged_in?
+            ticket = current_user.tickets.build(params)
+            #Ticket.create(title: params[:title], details: params[:details], employee_id: session[:User_id])
+            if ticket.save
+                redirect "/tickets"
+            else
+                redirect  "/tickets/new"
+            end 
+        else
+            redirect '/login'
+        end
     end
     
     get "/tickets/:id" do #Read
-        @ticket = Ticket.find_by(id: params[:id])
-        erb :'tickets/read_ticket'
+        if logged_in?
+            @ticket = current_user.tickets.find_by(id: params[:id])
+            erb :'tickets/read_ticket'
+        else
+            redirect '/login'
+        end
     end
     
     get "/tickets/:id/edit" do #Update
-        @ticket = Ticket.find_by(id: params[:id])
-        erb :'tickets/update_ticket'
+        if logged_in?
+            @ticket = current_user.tickets.find_by(id: params[:id])
+            if @ticket
+                erb :'tickets/update_ticket'
+            else
+                redirect '/tickets'
+            end 
+        else
+            redirect '/login'
+        end
     end 
       
     patch "/tickets/:id" do #Update
         #"Process the update and redirect"
-        ticket = Ticket.find_by(id: params[:id])
-        ticket.update(title: params[:title], details: params[:details])
-        redirect "/tickets"
+        if logged_in?
+            ticket = current_user.tickets.find_by(id: params[:id])
+            ticket.update(title: params[:title], details: params[:details])
+            redirect "/tickets"
+        else
+            redirect '/login'
+        end
     end
     
     delete "/tickets/:id" do #Delete
         #"Delete and redirect"
-        ticket = Ticket.find_by(id: params[:id])
-        Ticket.delete(ticket.id)
-        redirect "/tickets"
+        if logged_in?
+            ticket = current_user.tickets.find_by(id: params[:id])
+            Ticket.delete(ticket.id)
+            redirect "/tickets"
+        else
+            redirect '/login'
+        end        
     end
 
 end 

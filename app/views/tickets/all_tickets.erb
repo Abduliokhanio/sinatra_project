@@ -13,7 +13,7 @@
           <a class="nav-link" href="">All Tickets</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="">Logout</a>
+          <a class="nav-link" href="/logout">Logout</a>
         </li>      
       </ul>
     </div>
@@ -44,7 +44,7 @@
           <td><%=ticket.id%></td>
           <td><%=ticket.title%></td>
           <td><%=ticket.details%></td>
-          <td><%="ticket.owner"%></td>
+          <td><%=ticket.employee.name%></td>
           <td><%=ticket.created_at%></td>
           <td><%=ticket.updated_at%></td>
           <td><a class="btn btn-info btn-sm" href="/tickets/<%=ticket.id%>" role="button">Read</a></td>

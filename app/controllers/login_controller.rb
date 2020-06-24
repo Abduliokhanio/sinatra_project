@@ -5,8 +5,19 @@ class LoginController < ApplicationController
     end
 
     post '/login' do 
-        @user = Employee.find_by(username: params[:username])
-        redirect "/tickets"
+        user = Employee.find_by(username: params[:username])
+        
+        if user && user.authenticate(params[:password])
+            session[:User_id] = user.id
+            redirect "/tickets"
+        else 
+            redirect '/login'
+        end 
+    end 
+
+    get '/logout' do 
+        session.clear
+        redirect '/login'
     end 
 
     get "/signup" do 
