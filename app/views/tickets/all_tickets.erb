@@ -1,3 +1,24 @@
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="">Home</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/tickets/new">Create Ticket</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="">All Tickets</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="">Logout</a>
+        </li>      
+      </ul>
+    </div>
+  </nav>
+
 <head>
   <link rel="stylesheet" href="/stylesheets/main.css" />
 </head>
@@ -9,6 +30,7 @@
           <th>Ticket ID</th>
           <th>Ticket Title</th>
           <th>Ticket Details</th>
+          <th>Ticket Owner</th>
           <th>Created At</th>
           <th>Updated At</th>
           <th>Read</th>
@@ -22,14 +44,15 @@
           <td><%=ticket.id%></td>
           <td><%=ticket.title%></td>
           <td><%=ticket.details%></td>
+          <td><%="ticket.owner"%></td>
           <td><%=ticket.created_at%></td>
           <td><%=ticket.updated_at%></td>
           <td><a href ="/tickets/<%=ticket.id%>">Read</a> </td>
           <td><a href ="/tickets/<%=ticket.id%>/edit">Update</a></td>
           <td>
           <form method="POST" action = "/tickets/<%=ticket.id%>">
-          <input type="hidden" value="DELETE" name="_method">
-          <input type="submit" name = "" value = "Delete">
+            <input type="hidden" value="DELETE" name="_method">
+            <input class="btn btn-danger btn-sm" type="submit" name = "" value = "Delete">
           </form>
           </td>
           </tr>

@@ -1,3 +1,3 @@
-class Employee < ActiveRecord::Base   
-
+class Employee < ActiveRecord::Base
+    has_many :tickets   
 end

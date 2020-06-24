@@ -12,9 +12,16 @@
 
 ActiveRecord::Schema.define(version: 2) do
 
+  create_table "employees", force: :cascade do |t|
+    t.string "name"
+    t.string "username"
+    t.string "password"
+  end
+
   create_table "tickets", force: :cascade do |t|
     t.string "title"
     t.string "details"
+    t.integer "employee_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

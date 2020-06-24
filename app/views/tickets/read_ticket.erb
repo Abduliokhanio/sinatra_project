@@ -28,6 +28,13 @@
       </div>
 
       <div class="card" >
+        <div class="card-body">
+      <h5 style="text-decoration: underline;">Ticket Owner</h5>
+      <p class = "text-muted"><%="@ticket.owner found using sessions"%></p>
+        </div>
+      </div>
+
+      <div class="card" >
         <div class="card-body">      
           <h5 style="text-decoration: underline;">Created At</h5>
           <p class = "text-muted"><%=@ticket.created_at%></p>
@@ -52,7 +59,10 @@
           <div class="card" >
             <div class="card-body">
             <h5 style="text-decoration: underline;">Delete</h5>
-            <a class="btn btn-danger" href = "" role="button">Delete</a>
+            <form method="POST" action = "/tickets/<%=@ticket.id%>">
+            <input type="hidden" value="DELETE" name="_method">
+            <input class="btn btn-danger" type="submit" name = "" value = "Delete">
+          </form>
           </div>
         </div>
       

@@ -14,7 +14,8 @@ class LoginController < ApplicationController
     end 
 
     post "/signup" do 
-        #@user = Employee.create()#psudo bs code
+        @user = Employee.create(name: params[:name], username: params[:username], password: params[:password])
+        redirect "/tickets"
     end 
 
 
