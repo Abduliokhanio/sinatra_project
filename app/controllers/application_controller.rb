@@ -38,15 +38,16 @@ class ApplicationController < Sinatra::Base
   end 
   
   patch "/tickets/:id" do #Update
-    "Process the update and redirect"
-    @ticket = Ticket.find_by(id: params[:id])
-    @ticket.update(title: params[:title], details: params[:details])
+    #"Process the update and redirect"
+    ticket = Ticket.find_by(id: params[:id])
+    ticket.update(title: params[:title], details: params[:details])
     redirect "/tickets"
   end
 
   delete "/tickets/:id" do #Delete
-    @ticket = Ticket.find_by(id: params[:id])
-    Ticket.delete(@ticket.id)
+    #"Delete and redirect"
+    ticket = Ticket.find_by(id: params[:id])
+    Ticket.delete(ticket.id)
     redirect "/tickets"
   end
 
