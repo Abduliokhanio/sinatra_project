@@ -8,4 +8,6 @@ end
 use Rack::MethodOverride
 
 use LoginController
+use EmployeesController
+use TicketController
 run ApplicationController

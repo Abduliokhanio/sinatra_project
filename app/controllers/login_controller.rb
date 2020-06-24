@@ -6,11 +6,11 @@ class LoginController < ApplicationController
 
     post '/login' do 
         @user = Employee.find_by(username: params[:username])
-        erb :'tickets/all_tickets'
+        redirect "/tickets"
     end 
 
     get "/signup" do 
-        erb :'sessions/signup'
+        erb :'users/signup'
     end 
 
     post "/signup" do 
