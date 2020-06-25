@@ -16,13 +16,19 @@
       </ul>
     </div>
   </nav>
+
+    <div class="card">
+    <div class="card-body">
     <form method="POST" action = "/tickets/<%=@ticket.id%>">
         <input type="hidden" value="patch" name="_method">
         <label for= "title">Title:</label><br>
         <textarea rows="1" cols="20" type="text" id="title" name="title"><%=@ticket.title%></textarea><br>
+        <br>
         <label for= "details">Details:</label><br>
         <textarea rows="4" cols="50" type="text" id="details" name="details"><%=@ticket.details%></textarea><br>  
         <br>
         <a class="btn btn-danger" href="/tickets/<%=@ticket.id%>" role="button">Cancel</a>
         <button type="submit" class="btn btn-primary" value="Submit">Update Ticket</button>
     </form>
+    </div>
+    </div>
