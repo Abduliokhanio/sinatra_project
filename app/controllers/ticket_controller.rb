@@ -20,7 +20,6 @@ class TicketController < ApplicationController
     post "/tickets" do #Create
         if logged_in?
             ticket = current_user.tickets.build(params)
-            #Ticket.create(title: params[:title], details: params[:details], employee_id: session[:User_id])
             if ticket.save
                 redirect "/tickets"
             else
