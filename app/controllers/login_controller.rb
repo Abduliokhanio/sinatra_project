@@ -25,7 +25,6 @@ class LoginController < ApplicationController
     end 
 
     post "/signup" do 
-        binding.pry
         user = Employee.create(params)
         if user.save
             redirect "/tickets"
