@@ -34,7 +34,11 @@ class TicketController < ApplicationController
     get "/tickets/:id" do #Read
         if logged_in?
             @ticket = current_user.tickets.find_by(id: params[:id])
-            erb :'tickets/read_ticket'
+            if @ticket
+                erb :'tickets/read_ticket'
+            else
+                redirect '/tickets'
+            end
         else
             redirect '/login'
         end
@@ -57,8 +61,12 @@ class TicketController < ApplicationController
         #"Process the update and redirect"
         if logged_in?
             ticket = current_user.tickets.find_by(id: params[:id])
-            ticket.update(title: params[:title], details: params[:details])
-            redirect "/tickets"
+            if ticket
+                ticket.update(title: params[:title], details: params[:details])
+                redirect "/tickets"
+            else
+                redirect '/tickets'
+            end 
         else
             redirect '/login'
         end

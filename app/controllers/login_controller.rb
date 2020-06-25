@@ -25,8 +25,13 @@ class LoginController < ApplicationController
     end 
 
     post "/signup" do 
-        @user = Employee.create(name: params[:name], username: params[:username], password: params[:password])
-        redirect "/tickets"
+        binding.pry
+        user = Employee.create(params)
+        if user.save
+            redirect "/tickets"
+        else
+            redirect "/signup"
+        end 
     end 
 
 
