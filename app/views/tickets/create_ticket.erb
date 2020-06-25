@@ -15,22 +15,26 @@
         </li>      
       </ul>
     </div>
-  </nav>
+</nav>
     
-    <div class="card">
-    <div class="card-body">
+<div class="card">
+  <div class="card-body">
     <form method="POST" action = "/tickets">
+      <div class="card">
+      <div class="card-body">
 
-            <div class="card">
-            <div class="card-body">
-            <label for= "title">Title:</label><br>
-            <textarea rows="1" cols="20" type="text" id="title" name="title"></textarea><br>
-            <br>
-            <label for= "details">Details:</label><br>
-            <textarea rows="4" cols="50" type="text" id="details" name="details"></textarea><br>  
-            <br>
-            <a class="btn btn-danger" href="/tickets" role="button">Cancel</a>
-            <button type="submit" class="btn btn-primary" value="Submit">Create Ticket</button>
+      <div class="form-group">
+      <label for= "title">Title:</label><br>
+      <input class="form-control" type="text" id="title" name="title" placeholder="Please Put Title Here">
+      </div>
+
+      <div class="form-group">
+      <label for= "details">Details:</label><br>
+      <textarea class="form-control" rows="4" type="text" id="details" name="details" placeholder="Please Put Details Here"></textarea> 
+      </div>
+      
+      <a class="btn btn-danger" href="/tickets" role="button">Cancel</a>
+      <button type="submit" class="btn btn-primary" value="Submit">Create Ticket</button>
     </form>
-    </div>
-    </div>
+  </div>
+</div>
