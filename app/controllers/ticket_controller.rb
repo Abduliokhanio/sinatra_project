@@ -1,4 +1,7 @@
+require 'rack-flash'
+
 class TicketController < ApplicationController
+    use Rack::Flash
 
     get "/tickets" do #Read
         if logged_in?
@@ -11,6 +14,8 @@ class TicketController < ApplicationController
     
     get "/tickets/new" do #Create
         if logged_in?
+            @error_title = flash[:title_error]
+            @error_details = flash[:details_error]
             erb :'tickets/create_ticket'
         else
             redirect '/login'
@@ -20,9 +25,12 @@ class TicketController < ApplicationController
     post "/tickets" do #Create
         if logged_in?
             ticket = current_user.tickets.build(params)
+        
             if ticket.save
                 redirect "/tickets"
             else
+                flash[:title_error] = ticket.errors.messages[:title].join
+                flash[:details_error] = ticket.errors.messages[:details].join
                 redirect  "/tickets/new"
             end 
         else
@@ -33,6 +41,7 @@ class TicketController < ApplicationController
     get "/tickets/:id" do #Read
         if logged_in?
             @ticket = current_user.tickets.find_by(id: params[:id])
+            
             if @ticket
                 erb :'tickets/read_ticket'
             else

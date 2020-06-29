@@ -1,12 +1,12 @@
-class LoginController < ApplicationController
 
+class LoginController < ApplicationController
+    
     get "/login" do 
         erb :'sessions/login'
     end
 
     post '/login' do 
         user = Employee.find_by(username: params[:username])
-        
         if user && user.authenticate(params[:password])
             session[:User_id] = user.id
             redirect "/tickets"
@@ -33,6 +33,4 @@ class LoginController < ApplicationController
             redirect "/signup"
         end 
     end 
-
-
 end 
