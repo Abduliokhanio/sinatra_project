@@ -25,8 +25,9 @@ class LoginController < ApplicationController
     end 
 
     post "/signup" do 
-        user = Employee.create(params)
+        user = Employee.new(params)
         if user.save
+            session[:User_id] = user.id
             redirect "/tickets"
         else
             redirect "/signup"
