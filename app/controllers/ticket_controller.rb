@@ -29,8 +29,8 @@ class TicketController < ApplicationController
             if ticket.save
                 redirect "/tickets"
             else
-                flash[:title_error] = ticket.errors.messages[:title].join
-                flash[:details_error] = ticket.errors.messages[:details].join
+                flash[:title_error] = ticket.errors.messages[:title]
+                flash[:details_error] = ticket.errors.messages[:details]
                 redirect  "/tickets/new"
             end 
         else
@@ -54,6 +54,8 @@ class TicketController < ApplicationController
     
     get "/tickets/:id/edit" do #Update
         if logged_in?
+            @error_title = flash[:title_error]
+            @error_details = flash[:details_error]
             @ticket = current_user.tickets.find_by(id: params[:id])
             if @ticket
                 erb :'tickets/update_ticket'
@@ -70,8 +72,14 @@ class TicketController < ApplicationController
         if logged_in?
             ticket = current_user.tickets.find_by(id: params[:id])
             if ticket
-                ticket.update(title: params[:title], details: params[:details])
-                redirect "/tickets"
+                if ticket.update(title: params[:title], details: params[:details])
+                    redirect "/tickets"
+                else 
+                    flash[:title_error] = ticket.errors.messages[:title]
+                    flash[:details_error] = ticket.errors.messages[:details]
+                    redirect "/tickets/#{params[:id]}/edit"
+                end
+                
             else
                 redirect '/tickets'
             end 

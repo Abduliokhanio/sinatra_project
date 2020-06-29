@@ -24,28 +24,32 @@
       <div class="card-body">
 
       <div class="form-group">
-      <%if @error_title != nil%>
-        <div class="alert alert-danger" role="alert">
-          <%=@error_title%>
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-      <%end%>
       <label for= "title">Title:</label><br>
+      <%if @error_title != nil%>
+        <%@error_title.each do |title_error| %>
+          <div class="alert alert-danger" role="alert">
+            <%= "Title " + title_error%>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        <%end%>
+      <%end%>
       <input class="form-control" type="text" id="title" name="title" placeholder="Please Put Title Here">
       </div>
 
       <div class="form-group">
-      <%if @error_details != nil%>
-        <div class="alert alert-danger" role="alert">
-          <%=@error_details%>
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-      <%end%>
       <label for= "details">Details:</label><br>
+      <%if @error_details != nil%>
+        <%@error_details.each do |detail_error| %>
+          <div class="alert alert-danger" role="alert">
+            <%="Details " + detail_error%>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        <%end%>
+      <%end%>
       <textarea class="form-control" rows="4" type="text" id="details" name="details" placeholder="Please Put Details Here"></textarea> 
       </div>
       

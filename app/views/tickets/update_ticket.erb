@@ -24,15 +24,35 @@
 
         <div class="form-group">
           <label for= "title">Title:</label><br>
+          <%if @error_title != nil%>
+            <%@error_title.each do |title_error| %>
+              <div class="alert alert-danger" role="alert">
+                <%="Title " + title_error%>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            <%end%>
+          <%end%>
           <textarea class="form-control" rows="1" type="text" id="title" name="title"><%=@ticket.title%></textarea>
         </div>
 
         <div class="form-group">
           <label for= "details">Details:</label><br>
+          <%if @error_details != nil%>
+        <%@error_details.each do |detail_error| %>
+          <div class="alert alert-danger" role="alert">
+            <%="Details " + detail_error%>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        <%end%>
+      <%end%>
           <textarea class="form-control" rows="4" type="text" id="details" name="details"><%=@ticket.details%></textarea>
         </div>
 
-        <a class="btn btn-danger" href="/tickets/<%=@ticket.id%>" role="button">Cancel</a>
+        <a class="btn btn-danger" href="/tickets" role="button">Cancel</a>
         <button type="submit" class="btn btn-primary" value="Submit">Update Ticket</button>
     </form>
     </div>
