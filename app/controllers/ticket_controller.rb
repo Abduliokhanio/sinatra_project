@@ -1,4 +1,3 @@
-require 'rack-flash'
 
 class TicketController < ApplicationController
     use Rack::Flash

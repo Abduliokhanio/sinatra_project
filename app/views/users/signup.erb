@@ -1,22 +1,58 @@
 <div class="container-fluid">
         <h1 style="color:black;" style = text-white>Some Company's Signup Page</h1>
         <div class="row justify-content-center custom-margin">
-            <div class="col-sm-6 col-md-4">
+            <div style="width:50%">
                 <form method="POST" action ="/signup" class="shadow-lg p-4 text-white" style ="background-color:#1d2124b8;">
                     <div class="form-group">
-                     <i class="fas fa-user"></i><label for="name" class="pl-2 font-weight-bold">Name</label><input type="text"
-                         class="form-control" placeholder="name" id="name" name="name" title="Please enter your full name EX: Jimmy John"  >
+                     <i class="fas fa-user"></i><label for="name" class="pl-2 font-weight-bold">Name</label>
+
+                     <input type="text" class="form-control" placeholder="name" id="name" name="name" title="Please enter your full name EX: Jimmy John"  >
                      <!--Add text-white below if want text color white-->
                      </div>
+
+                    <%if @name_error != nil%>
+                        <%@name_error.each do |name_error| %>
+                        <div class="alert alert-danger" role="alert">
+                         <%= "Name " + name_error%>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <%end%>
+                    <%end%>
+                     
                     <div class="form-group">
                      <i class="fas fa-user"></i><label for="username" class="pl-2 font-weight-bold">Username</label><input type="text"
                          class="form-control" placeholder="Username" id="username" name="username" pattern="^[[A-Z]|[a-z]][[A-Z]|[a-z]|\\d|[_]]{5,29}$" title="Please keep username between 6-15 charecters  EX Username: SillyUsername01"  >
                      <!--Add text-white below if want text color white-->
                      </div>
+
+                    <%if @username_error != nil%>
+                        <%@username_error.each do |username_error| %>
+                        <div class="alert alert-danger" role="alert">
+                         <%= "Username " + username_error%>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <%end%>
+                    <%end%>
+
                      <div class="form-group">
                      <i class="fas fa-key"></i><label for="password" class="pl-2 font-weight-bold">Password</label><input type="text"
                           class="form-control" placeholder="Password" id="password" name="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#@$!%*?&])[A-Za-z\d@$!%*?&]{8,25}$" title="Minimum eight and maximum 10 characters, at least one uppercase letter, one lowercase letter, one number and one special character EX:password Fakepassword01!" >
                      </div>
+
+                    <%if @password_error != nil%>
+                        <%@password_error.each do |password_error| %>
+                        <div class="alert alert-danger" role="alert">
+                         <%= "Password " + password_error%>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <%end%>
+                    <%end%>
                   <a href="/">Login</a><br>
                   <button type="submit" class="btn btn-success mt-3 btn-block shadow-sm font-weight-bold" value="Submit">Sign Up</button>
                 </form>
