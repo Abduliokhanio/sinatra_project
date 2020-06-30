@@ -2,8 +2,7 @@ class LoginController < ApplicationController
     use Rack::Flash
 
     get "/login" do 
-        #@username_error = flash[:username_error]
-        #@password_error = flash[:password_error]
+        @login_error = flash[:login_error]
         erb :'sessions/login'
     end
 
@@ -13,9 +12,7 @@ class LoginController < ApplicationController
             session[:User_id] = user.id
             redirect "/tickets"
         else 
-            binding.pry
-            #flash[:username_error] = user.errors.messages[:username]
-            #flash[:password_error] = user.errors.messages[:password]
+            flash[:login_error] = "Please enter the correct username or password"
             redirect '/login'
         end 
     end 

@@ -3,19 +3,18 @@
         <div class="row justify-content-center custom-margin">
             <div style="width:50%">
                 <form method="POST" action ="/login" class="shadow-lg p-4 text-white" style ="background-color:#1d2124b8;">
-                    <div class="form-group">
-                     <i class="fas fa-user"></i><label for="username" class="pl-2 font-weight-bold">Username</label>
 
-                    <%if @username_error != nil%>
-                        <%@username_error.each do |username_error| %>
+                    <% if @login_error != nil %>
                         <div class="alert alert-danger" role="alert">
-                         <%= "Username " + username_error%>
+                         <%= @login_error%>
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <%end%>
-                    <%end%>
+                    <% end %>
+
+                    <div class="form-group">
+                     <i class="fas fa-user"></i><label for="username" class="pl-2 font-weight-bold">Username</label>
 
                      <input type="text" class="form-control" placeholder="Username" id="username" name="username" pattern="^[[A-Z]|[a-z]][[A-Z]|[a-z]|\\d|[_]]{5,29}$" title="Please keep username between 6-15 charecters  EX Username: JohnyJohnyYesPapa01"  >
                      <!--Add text-white below if want text color white-->

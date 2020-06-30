@@ -8,12 +8,12 @@
 
 |X| 5)Must have user accounts - users must be able to sign up, sign in, and sign out.
 
-| | 6)Validate uniqueness of user login attribute (username or email).
+|X| 6)Validate uniqueness of user login attribute (username or email).
 
 |X| 7)Once logged in, a user must have the ability to create, read, update and destroy the resource that belongs_to user.
 
 |X| 8)Ensure that users can edit and delete only their own resources - not resources created by other users.
 
-| | 9)Validate user input so bad data cannot be persisted to the database.
+|X| 9)Validate user input so bad data cannot be persisted to the database.
 
-| | 10)BONUS: Display validation failures to user with error messages. (This is an optional feature, challenge yourself and give it a shot!)
+|X| 10)BONUS: Display validation failures to user with error messages. (This is an optional feature, challenge yourself and give it a shot!)
