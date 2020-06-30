@@ -9,7 +9,7 @@ class LoginController < ApplicationController
     post '/login' do 
         user = Employee.find_by(username: params[:username])
         if user && user.authenticate(params[:password])
-            session[:User_id] = user.id
+            login_user(user)
             redirect "/tickets"
         else 
             flash[:login_error] = "Please enter the correct username or password"
@@ -23,21 +23,17 @@ class LoginController < ApplicationController
     end 
 
     get "/signup" do 
-        @name_error = flash[:name_error]
-        @username_error = flash[:username_error]
-        @password_error = flash[:password_error]
+        error_getter_signup
         erb :'users/signup'
     end 
 
     post "/signup" do 
         user = Employee.new(params)
         if user.save
-            session[:User_id] = user.id
+            login_user(user)
             redirect "/tickets"
         else
-            flash[:name_error] = user.errors.messages[:name]
-            flash[:username_error] = user.errors.messages[:username]
-            flash[:password_error] = user.errors.messages[:password]
+            error_setter_signup(user)
             redirect "/signup"
         end 
     end 
