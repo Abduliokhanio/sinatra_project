@@ -49,7 +49,7 @@ class TicketController < ApplicationController
         end
     end
     
-    get "/tickets/:id/edit" do #Update
+    get "/tickets/:id/edit" do #Update -edit
         if logged_in?
             error_getter_ticket
             @ticket = current_user.tickets.find_by(id: params[:id])
@@ -63,9 +63,9 @@ class TicketController < ApplicationController
         end
     end 
       
-    patch "/tickets/:id" do #Update
+    patch "/tickets/:id" do #Update -update
         #"Process the update and redirect"
-        
+
 
         if logged_in?
             ticket = current_user.tickets.find_by(id: params[:id])

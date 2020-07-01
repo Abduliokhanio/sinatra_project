@@ -3,12 +3,9 @@ class Employee < ActiveRecord::Base
     has_secure_password  
     
     #name 
-    validates :name, presence: true
+    validates :name,:username,:password, presence: true
  
     #username 
-    validates :username, presence: true
     validates :username, uniqueness: true
     
-    #password
-    validates :password, presence: true
 end
