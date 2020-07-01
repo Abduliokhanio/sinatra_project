@@ -6,12 +6,12 @@ class EmployeesController < ApplicationController
   end 
 
   post "/signup" do 
-    user = Employee.new(params)
-    if user.save
-        login_user(user)
+    employee = Employee.new(params)
+    if employee.save
+        login_user(employee)
         redirect "/tickets"
     else
-        error_setter_signup(user)
+        error_setter_signup(employee)
         redirect "/signup"
     end 
   end 

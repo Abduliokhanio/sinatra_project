@@ -7,9 +7,9 @@ class LoginController < ApplicationController
     end
 
     post '/login' do 
-        user = Employee.find_by(username: params[:username])
-        if user && user.authenticate(params[:password])
-            login_user(user)
+        employee = Employee.find_by(username: params[:username])
+        if employee && employee.authenticate(params[:password])
+            login_user(employee)
             redirect "/tickets"
         else 
             flash[:login_error] = "Please enter the correct username or password"

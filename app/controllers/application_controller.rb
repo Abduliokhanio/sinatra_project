@@ -23,7 +23,7 @@ class ApplicationController < Sinatra::Base
     end 
 
     def current_user
-      @user ||= Employee.find_by_id(session[:User_id]) if logged_in?
+      @employee ||= Employee.find_by_id(session[:User_id]) if logged_in?
     end 
 
     def error_setter_ticket(obj)

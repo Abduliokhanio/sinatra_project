@@ -2,7 +2,7 @@
 class TicketController < ApplicationController
     use Rack::Flash
 
-    get "/tickets" do #Read
+    get "/tickets" do #Read -index action
         if logged_in?
             @tickets = current_user.tickets
             erb :'tickets/all_tickets'
@@ -11,7 +11,7 @@ class TicketController < ApplicationController
         end 
     end 
     
-    get "/tickets/new" do #Create
+    get "/tickets/new" do #Create -new action
         if logged_in?
             error_getter_ticket
             erb :'tickets/create_ticket'
@@ -20,7 +20,7 @@ class TicketController < ApplicationController
         end
     end
     
-    post "/tickets" do #Create
+    post "/tickets" do #Create -create action
         if logged_in?
             ticket = current_user.tickets.build(params)
         
@@ -35,7 +35,7 @@ class TicketController < ApplicationController
         end
     end
     
-    get "/tickets/:id" do #Read
+    get "/tickets/:id" do #Read - show action
         if logged_in?
             @ticket = current_user.tickets.find_by(id: params[:id])
             
@@ -49,7 +49,7 @@ class TicketController < ApplicationController
         end
     end
     
-    get "/tickets/:id/edit" do #Update -edit
+    get "/tickets/:id/edit" do #Update -edit action
         if logged_in?
             error_getter_ticket
             @ticket = current_user.tickets.find_by(id: params[:id])
@@ -63,10 +63,8 @@ class TicketController < ApplicationController
         end
     end 
       
-    patch "/tickets/:id" do #Update -update
+    patch "/tickets/:id" do #Update -update action
         #"Process the update and redirect"
-
-
         if logged_in?
             ticket = current_user.tickets.find_by(id: params[:id])
             if ticket
@@ -75,8 +73,7 @@ class TicketController < ApplicationController
                 else 
                     error_setter_ticket(ticket)
                     redirect "/tickets/#{params[:id]}/edit"
-                end
-                
+                end   
             else
                 redirect '/tickets'
             end 
@@ -85,16 +82,22 @@ class TicketController < ApplicationController
         end
     end
     
-    delete "/tickets/:id" do #Delete
+    delete "/tickets/:id" do #Delete -delete action
         #"Delete and redirect"
         if logged_in?
             ticket = current_user.tickets.find_by(id: params[:id])
             #replace delete with destroy
-            Ticket.delete(ticket.id)
-            redirect "/tickets"
+            if ticket
+                Ticket.delete(ticket.id)
+                redirect "/tickets"
+            else
+                redirect "/tickets"
+            end 
         else
             redirect '/login'
         end        
     end
+
+
 
 end 
