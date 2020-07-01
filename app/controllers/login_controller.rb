@@ -24,7 +24,7 @@ class LoginController < ApplicationController
 
     get "/signup" do 
         error_getter_signup
-        erb :'users/signup'
+        erb :'users/signup' #render view
     end 
 
     post "/signup" do 

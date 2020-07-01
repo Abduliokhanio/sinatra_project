@@ -65,6 +65,8 @@ class TicketController < ApplicationController
       
     patch "/tickets/:id" do #Update
         #"Process the update and redirect"
+        
+
         if logged_in?
             ticket = current_user.tickets.find_by(id: params[:id])
             if ticket
@@ -87,6 +89,7 @@ class TicketController < ApplicationController
         #"Delete and redirect"
         if logged_in?
             ticket = current_user.tickets.find_by(id: params[:id])
+            #replace delete with destroy
             Ticket.delete(ticket.id)
             redirect "/tickets"
         else
