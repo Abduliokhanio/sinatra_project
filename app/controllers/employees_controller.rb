@@ -1,4 +1,5 @@
 class EmployeesController < ApplicationController
+  use Rack::Flash
 
   get "/signup" do 
     error_getter_signup
