@@ -22,6 +22,12 @@ class ApplicationController < Sinatra::Base
       session[:User_id] = obj.id
     end 
 
+    def logged_in_else_redirect
+      if !logged_in?
+        redirect '/login'
+      end 
+    end 
+
     def current_user
       @employee ||= Employee.find_by_id(session[:User_id]) if logged_in?
     end 
